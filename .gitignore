@@ -1,0 +1,34 @@
+# Participant-level data: never distributed
+data/*
+!data/raw/
+data/raw/*
+!data/raw/README.md
+
+# Fitted brms objects hold participant rows in fit$data: never distributed
+fits/*
+!fits/README.md
+
+# Derived objects built from the fits (analysis data set, per-draw caches)
+derived/*
+!derived/.gitkeep
+
+# Figure outputs (the published versions are in the article)
+figures/*
+!figures/.gitkeep
+
+# R session artifacts
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+Rplots.pdf
+
+# OS / editor scratch
+.DS_Store
+Thumbs.db
+~$*
+*.bak
+*.tmp
+
+# Per-user Claude Code state
+.claude/
