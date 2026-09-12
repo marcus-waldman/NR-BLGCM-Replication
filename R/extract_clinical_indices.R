@@ -183,7 +183,7 @@ ancova_treat_per_draw <- function(formula, auc_glu_0, auc_ins_0, auc_glu_1, auc_
 # True-score mode: posterior_epred returns Lambda %*% (alpha + zeta_i) per
 # draw with PTID random effects baked in. Per draw, fit cross-adjusted ANCOVA
 # on the four per-PTID AUCs and summarize the treat coefficient as posterior
-# mean + 95% CrI. No within-draw SE; no Rubin's pooling.
+# mean + 95% CrI. 
 compute_auc_true_score <- function(fit) {
   nd <- build_clinical_newdata(fit)
   ptid_info <- dplyr::distinct(nd, PTID, treat) |> dplyr::arrange(PTID)

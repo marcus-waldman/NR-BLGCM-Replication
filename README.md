@@ -76,6 +76,19 @@ five fits and checks that the generated Stan program and Stan data are
 identical to those stored in the fit objects. This is how we confirmed that
 the code in this repository is the code that produced the reported fits.
 
+`compare_fits.R` scores a fresh set of fits against a reference set:
+
+```
+Rscript scripts/compare_fits.R --ref <reference fits dir> --new <fresh fits dir>
+```
+
+It reports, per fit, the per-parameter z-scores of the posterior means
+(scaled by Monte Carlo standard error), the posterior-SD ratios, and for the
+primary fit the AUC treatment effects in both modes side by side. The fits use
+within-chain threading with dynamic scheduling, so a refit with the same seed
+reproduces the posterior up to Monte Carlo error rather than bit for bit; the
+script's thresholds are set accordingly.
+
 ### Model fitting settings (`scripts/02_fit_models.R`)
 
 Four chains, 1,000 warmup and 2,000 sampling iterations each, `adapt_delta =
@@ -114,6 +127,7 @@ R/                      helper functions (sourced by R/_setup.R)
 priors/                 literature OGTT reference curves + prior-derivation audit scripts
 scripts/01..05_*.R      pipeline
 scripts/verify_model_spec.R
+scripts/compare_fits.R   refit check against a reference fits directory
 run_all.R               runs scripts 01-05 in order
 data/raw/               (empty) expected workbook layout in README
 fits/                   (empty) fitted models land here
